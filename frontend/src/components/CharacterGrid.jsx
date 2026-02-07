@@ -50,7 +50,7 @@ function CharacterGrid({ availableCharacters, takenCharacters, selectedCharacter
             <span className={`text-xs md:text-sm text-center leading-tight ${
               isTaken ? 'text-gray-400' : 'text-white'
             }`}>
-              {character.split(' ')[0]}
+              {character}
             </span>
             {isTaken && (
               <span className="text-xs text-coral mt-1 truncate max-w-full">
