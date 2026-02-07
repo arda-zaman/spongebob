@@ -200,6 +200,23 @@ export class GameManager {
       answerIndex,
       answerTime
     });
+
+    // If all players have answered, end the question early
+    if (this.allPlayersAnswered()) {
+      clearTimeout(this.questionTimer);
+      this.questionTimer = null;
+      this.endQuestion();
+    }
+  }
+
+  allPlayersAnswered() {
+    let totalPlayers = 0;
+
+    this.players.forEach((player) => {
+      if (!player.isAdmin) totalPlayers++;
+    });
+
+    return this.currentAnswers.size >= totalPlayers;
   }
 
   endQuestion() {
