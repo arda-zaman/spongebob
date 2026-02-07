@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getCharacterEmoji } from '../../utils/characters';
+import CharacterAvatar from '../CharacterAvatar';
 
 function AdminGame({ currentQuestion, questionResults, playerAnswers, lobbyData }) {
   const [timeLeft, setTimeLeft] = useState(0);
@@ -129,7 +129,7 @@ function AdminGame({ currentQuestion, questionResults, playerAnswers, lobbyData 
                       key={index}
                       className="flex items-center gap-2 bg-ocean-blue/30 p-2 rounded-lg"
                     >
-                      <span className="text-2xl">{getCharacterEmoji(answer.character)}</span>
+                      <CharacterAvatar character={answer.character} size="sm" />
                       <span className="text-white flex-1">{answer.playerName}</span>
                       <span className="text-sponge-yellow">
                         {['🅰️', '🅱️', '©️', '🅳'][answer.answerIndex]}
@@ -159,7 +159,7 @@ function AdminGame({ currentQuestion, questionResults, playerAnswers, lobbyData 
                     <span className="text-lg w-8">
                       {player.rank === 1 ? '🥇' : player.rank === 2 ? '🥈' : player.rank === 3 ? '🥉' : `#${player.rank}`}
                     </span>
-                    <span className="text-2xl">{getCharacterEmoji(player.character)}</span>
+                    <CharacterAvatar character={player.character} size="sm" />
                     <div className="flex-1 min-w-0">
                       <p className="text-white text-sm truncate">{player.name}</p>
                     </div>

@@ -1,4 +1,4 @@
-import { getCharacterEmoji } from '../../utils/characters';
+import CharacterAvatar from '../CharacterAvatar';
 import CharacterGrid from '../CharacterGrid';
 
 function AdminLobby({ lobbyData, playerCount, onStartGame, loading }) {
@@ -73,7 +73,7 @@ function AdminLobby({ lobbyData, playerCount, onStartGame, loading }) {
                     key={player.socketId}
                     className="bg-ocean-blue/40 rounded-xl p-4 flex items-center gap-3"
                   >
-                    <span className="text-4xl">{getCharacterEmoji(player.character)}</span>
+                    <CharacterAvatar character={player.character} size="lg" />
                     <div>
                       <p className="text-white font-bold">{player.name}</p>
                       <p className="text-white/60 text-sm">{player.character}</p>

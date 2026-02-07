@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CharacterGrid from '../CharacterGrid';
-import { getCharacterEmoji } from '../../utils/characters';
+import CharacterAvatar from '../CharacterAvatar';
 
 function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
   const [name, setName] = useState('');
@@ -27,8 +27,8 @@ function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
           </h1>
           
           <div className="bg-ocean-blue/50 rounded-2xl p-6 mb-6">
-            <div className="text-8xl mb-4">
-              {getCharacterEmoji(playerData.character)}
+            <div className="flex justify-center mb-4">
+              <CharacterAvatar character={playerData.character} size="3xl" />
             </div>
             <p className="text-2xl text-white">
               Playing as <span className="text-sponge-yellow">{playerData.character}</span>
@@ -51,7 +51,7 @@ function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
                     key={player.socketId}
                     className="bg-ocean-blue/60 px-4 py-2 rounded-full flex items-center gap-2"
                   >
-                    <span className="text-2xl">{getCharacterEmoji(player.character)}</span>
+                    <CharacterAvatar character={player.character} size="sm" />
                     <span className="text-white">{player.name}</span>
                   </div>
                 ))}
@@ -106,8 +106,8 @@ function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
         {/* Selected Character Preview & Confirm */}
         {selectedCharacter && (
           <div className="bg-ocean-dark/80 backdrop-blur-sm rounded-2xl p-6 max-w-md mx-auto text-center border-2 border-sponge-yellow">
-            <div className="text-6xl mb-3">
-              {getCharacterEmoji(selectedCharacter)}
+            <div className="flex justify-center mb-3">
+              <CharacterAvatar character={selectedCharacter} size="2xl" />
             </div>
             <p className="text-xl text-white mb-4">
               Selected: <span className="text-sponge-yellow">{selectedCharacter}</span>
@@ -140,7 +140,7 @@ function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
                     key={player.socketId}
                     className="bg-ocean-blue/60 px-4 py-2 rounded-full flex items-center gap-2"
                   >
-                    <span className="text-2xl">{getCharacterEmoji(player.character)}</span>
+                    <CharacterAvatar character={player.character} size="sm" />
                     <span className="text-white">{player.name}</span>
                   </div>
                 ))}

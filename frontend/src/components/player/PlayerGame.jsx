@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getCharacterEmoji } from '../../utils/characters';
+import CharacterAvatar from '../CharacterAvatar';
 
 function PlayerGame({ currentQuestion, questionResults, playerData, onAnswerSubmit, leaderboard }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -73,7 +73,7 @@ function PlayerGame({ currentQuestion, questionResults, playerData, onAnswerSubm
         {/* Header with score and character */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-3 bg-ocean-dark/80 px-4 py-2 rounded-xl">
-            <span className="text-3xl">{getCharacterEmoji(playerData.character)}</span>
+            <CharacterAvatar character={playerData.character} size="md" />
             <div>
               <p className="text-white text-sm">{playerData.name}</p>
               <p className="text-sponge-yellow font-bold">Score: {playerData.score}</p>
@@ -158,7 +158,7 @@ function PlayerGame({ currentQuestion, questionResults, playerData, onAnswerSubm
                 <span className="text-lg">
                   {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
                 </span>
-                <span className="text-xl">{getCharacterEmoji(player.character)}</span>
+                <CharacterAvatar character={player.character} size="xs" />
                 <div className="flex-1 truncate">
                   <p className="text-white truncate">{player.name}</p>
                   <p className="text-sponge-yellow text-xs">{player.score} pts</p>

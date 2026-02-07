@@ -1,4 +1,4 @@
-import { getCharacterEmoji } from '../../utils/characters';
+import CharacterAvatar from '../CharacterAvatar';
 
 function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
   const top3 = leaderboard.slice(0, 3);
@@ -22,7 +22,9 @@ function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
           {/* 2nd Place */}
           {top3[1] && (
             <div className="flex flex-col items-center">
-              <div className="text-5xl mb-2">{getCharacterEmoji(top3[1].character)}</div>
+              <div className="mb-2 flex justify-center">
+                <CharacterAvatar character={top3[1].character} size="xl" />
+              </div>
               <p className="text-white text-sm mb-2 truncate max-w-24">{top3[1].name}</p>
               <div className="podium-2 w-24 md:w-32 rounded-t-lg flex flex-col items-center justify-start pt-4">
                 <span className="text-4xl">🥈</span>
@@ -34,7 +36,9 @@ function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
           {/* 1st Place */}
           {top3[0] && (
             <div className="flex flex-col items-center">
-              <div className="text-6xl mb-2 animate-bounce">{getCharacterEmoji(top3[0].character)}</div>
+              <div className="mb-2 animate-bounce flex justify-center">
+                <CharacterAvatar character={top3[0].character} size="2xl" />
+              </div>
               <p className="text-sponge-yellow text-lg mb-2 truncate max-w-28">{top3[0].name}</p>
               <div className="podium-1 w-28 md:w-36 rounded-t-lg flex flex-col items-center justify-start pt-4">
                 <span className="text-5xl">🥇</span>
@@ -46,7 +50,9 @@ function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
           {/* 3rd Place */}
           {top3[2] && (
             <div className="flex flex-col items-center">
-              <div className="text-5xl mb-2">{getCharacterEmoji(top3[2].character)}</div>
+              <div className="mb-2 flex justify-center">
+                <CharacterAvatar character={top3[2].character} size="xl" />
+              </div>
               <p className="text-white text-sm mb-2 truncate max-w-24">{top3[2].name}</p>
               <div className="podium-3 w-24 md:w-32 rounded-t-lg flex flex-col items-center justify-start pt-4">
                 <span className="text-4xl">🥉</span>
@@ -61,7 +67,7 @@ function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
           <div className="bg-ocean-dark/80 backdrop-blur-sm rounded-2xl p-6 mb-8 border-2 border-sponge-yellow text-center">
             <h3 className="text-xl text-white mb-2">Your Result</h3>
             <div className="flex items-center justify-center gap-4">
-              <span className="text-5xl">{getCharacterEmoji(playerData.character)}</span>
+              <CharacterAvatar character={playerData.character} size="xl" />
               <div>
                 <p className="text-sponge-yellow text-3xl font-bold">#{myRank.rank}</p>
                 <p className="text-white">{myRank.score} points</p>
@@ -86,7 +92,7 @@ function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
                 <span className="text-2xl w-10 text-center">
                   {player.rank === 1 ? '🥇' : player.rank === 2 ? '🥈' : player.rank === 3 ? '🥉' : `#${player.rank}`}
                 </span>
-                <span className="text-3xl">{getCharacterEmoji(player.character)}</span>
+                <CharacterAvatar character={player.character} size="md" />
                 <div className="flex-1">
                   <p className="text-white font-bold">{player.name}</p>
                   <p className="text-white/60 text-sm">{player.character}</p>

@@ -1,4 +1,4 @@
-import { getCharacterEmoji } from '../utils/characters';
+import CharacterAvatar from './CharacterAvatar';
 
 const ALL_CHARACTERS = [
   'SpongeBob SquarePants',
@@ -44,9 +44,9 @@ function CharacterGrid({ availableCharacters, takenCharacters, selectedCharacter
                 : 'bg-ocean-blue/40 hover:bg-ocean-blue/60'
             } ${!isAdmin && !isTaken ? 'cursor-pointer' : 'cursor-default'}`}
           >
-            <span className="text-4xl md:text-5xl mb-2">
-              {getCharacterEmoji(character)}
-            </span>
+            <div className="mb-2">
+              <CharacterAvatar character={character} size="lg" />
+            </div>
             <span className={`text-xs md:text-sm text-center leading-tight ${
               isTaken ? 'text-gray-400' : 'text-white'
             }`}>
