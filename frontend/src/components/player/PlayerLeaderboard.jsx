@@ -1,0 +1,111 @@
+import { getCharacterEmoji } from '../../utils/characters';
+
+function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
+  const top3 = leaderboard.slice(0, 3);
+  const myRank = leaderboard.find(p => p.socketId === socketId);
+
+  return (
+    <div className="min-h-screen p-4 md:p-8">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-5xl md:text-6xl text-sponge-yellow drop-shadow-lg mb-2">
+            🏆 Final Results
+          </h1>
+          <p className="text-xl text-white/80">
+            Great game, everyone!
+          </p>
+        </div>
+
+        {/* Podium */}
+        <div className="flex justify-center items-end gap-4 mb-12 h-64">
+          {/* 2nd Place */}
+          {top3[1] && (
+            <div className="flex flex-col items-center">
+              <div className="text-5xl mb-2">{getCharacterEmoji(top3[1].character)}</div>
+              <p className="text-white text-sm mb-2 truncate max-w-24">{top3[1].name}</p>
+              <div className="podium-2 w-24 md:w-32 rounded-t-lg flex flex-col items-center justify-start pt-4">
+                <span className="text-4xl">🥈</span>
+                <p className="text-white font-bold">{top3[1].score}</p>
+              </div>
+            </div>
+          )}
+
+          {/* 1st Place */}
+          {top3[0] && (
+            <div className="flex flex-col items-center">
+              <div className="text-6xl mb-2 animate-bounce">{getCharacterEmoji(top3[0].character)}</div>
+              <p className="text-sponge-yellow text-lg mb-2 truncate max-w-28">{top3[0].name}</p>
+              <div className="podium-1 w-28 md:w-36 rounded-t-lg flex flex-col items-center justify-start pt-4">
+                <span className="text-5xl">🥇</span>
+                <p className="text-white font-bold text-xl">{top3[0].score}</p>
+              </div>
+            </div>
+          )}
+
+          {/* 3rd Place */}
+          {top3[2] && (
+            <div className="flex flex-col items-center">
+              <div className="text-5xl mb-2">{getCharacterEmoji(top3[2].character)}</div>
+              <p className="text-white text-sm mb-2 truncate max-w-24">{top3[2].name}</p>
+              <div className="podium-3 w-24 md:w-32 rounded-t-lg flex flex-col items-center justify-start pt-4">
+                <span className="text-4xl">🥉</span>
+                <p className="text-white font-bold">{top3[2].score}</p>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Your Result */}
+        {myRank && (
+          <div className="bg-ocean-dark/80 backdrop-blur-sm rounded-2xl p-6 mb-8 border-2 border-sponge-yellow text-center">
+            <h3 className="text-xl text-white mb-2">Your Result</h3>
+            <div className="flex items-center justify-center gap-4">
+              <span className="text-5xl">{getCharacterEmoji(playerData.character)}</span>
+              <div>
+                <p className="text-sponge-yellow text-3xl font-bold">#{myRank.rank}</p>
+                <p className="text-white">{myRank.score} points</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Full Leaderboard */}
+        <div className="bg-ocean-dark/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-sponge-yellow/50">
+          <h3 className="text-2xl text-sponge-yellow mb-4 text-center">Full Rankings</h3>
+          <div className="space-y-2 max-h-96 overflow-y-auto">
+            {leaderboard.map((player) => (
+              <div
+                key={player.socketId}
+                className={`flex items-center gap-4 p-3 rounded-xl ${
+                  player.socketId === socketId
+                    ? 'bg-sponge-yellow/20 border border-sponge-yellow'
+                    : 'bg-ocean-blue/30'
+                }`}
+              >
+                <span className="text-2xl w-10 text-center">
+                  {player.rank === 1 ? '🥇' : player.rank === 2 ? '🥈' : player.rank === 3 ? '🥉' : `#${player.rank}`}
+                </span>
+                <span className="text-3xl">{getCharacterEmoji(player.character)}</span>
+                <div className="flex-1">
+                  <p className="text-white font-bold">{player.name}</p>
+                  <p className="text-white/60 text-sm">{player.character}</p>
+                </div>
+                <p className="text-sponge-yellow font-bold text-xl">{player.score}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Waiting Message */}
+        <div className="text-center mt-8 animate-pulse">
+          <p className="text-xl text-seafoam">
+            ⏳ Waiting for admin to reset the game...
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default PlayerLeaderboard;
