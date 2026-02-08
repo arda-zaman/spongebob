@@ -13,6 +13,7 @@ function AdminView({ socket }) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [questionResults, setQuestionResults] = useState(null);
   const [finalLeaderboard, setFinalLeaderboard] = useState([]);
+  const [answerKey, setAnswerKey] = useState([]);
   const [playerAnswers, setPlayerAnswers] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -48,6 +49,7 @@ function AdminView({ socket }) {
     socket.on('game-ended', (data) => {
       setGameState('FINISHED');
       setFinalLeaderboard(data.finalLeaderboard);
+      setAnswerKey(data.answerKey || []);
     });
 
     socket.on('game-reset', () => {
@@ -55,6 +57,7 @@ function AdminView({ socket }) {
       setCurrentQuestion(null);
       setQuestionResults(null);
       setFinalLeaderboard([]);
+      setAnswerKey([]);
       setPlayerAnswers([]);
     });
 
@@ -172,6 +175,7 @@ function AdminView({ socket }) {
       {gameState === 'FINISHED' && (
         <AdminLeaderboard
           leaderboard={finalLeaderboard}
+          answerKey={answerKey}
           onResetGame={handleResetGame}
           loading={loading}
         />

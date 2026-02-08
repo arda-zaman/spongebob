@@ -1,6 +1,7 @@
 import CharacterAvatar from '../CharacterAvatar';
+import AnswerKeyModal from '../AnswerKeyModal';
 
-function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
+function PlayerLeaderboard({ leaderboard, answerKey, playerData, socketId }) {
   const top3 = leaderboard.slice(0, 3);
   const myRank = leaderboard.find(p => p.socketId === socketId);
 
@@ -75,6 +76,11 @@ function PlayerLeaderboard({ leaderboard, playerData, socketId }) {
             </div>
           </div>
         )}
+
+        {/* Answer Key Button */}
+        <div className="text-center mb-8">
+          <AnswerKeyModal answerKey={answerKey} />
+        </div>
 
         {/* Full Leaderboard */}
         <div className="bg-ocean-dark/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-sponge-yellow/50">

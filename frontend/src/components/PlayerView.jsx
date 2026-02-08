@@ -13,6 +13,7 @@ function PlayerView({ socket }) {
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [questionResults, setQuestionResults] = useState(null);
   const [finalLeaderboard, setFinalLeaderboard] = useState([]);
+  const [answerKey, setAnswerKey] = useState([]);
   const [playerData, setPlayerData] = useState({
     name: '',
     character: null,
@@ -53,6 +54,7 @@ function PlayerView({ socket }) {
     socket.on('game-ended', (data) => {
       setGameState('FINISHED');
       setFinalLeaderboard(data.finalLeaderboard);
+      setAnswerKey(data.answerKey || []);
     });
 
     socket.on('game-reset', () => {
@@ -60,6 +62,7 @@ function PlayerView({ socket }) {
       setCurrentQuestion(null);
       setQuestionResults(null);
       setFinalLeaderboard([]);
+      setAnswerKey([]);
       setPlayerData(prev => ({
         ...prev,
         character: null,
@@ -129,6 +132,7 @@ function PlayerView({ socket }) {
       {gameState === 'FINISHED' && (
         <PlayerLeaderboard
           leaderboard={finalLeaderboard}
+          answerKey={answerKey}
           playerData={playerData}
           socketId={socket.id}
         />

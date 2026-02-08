@@ -292,7 +292,15 @@ export class GameManager {
     
     const finalLeaderboard = this.buildLeaderboard();
 
-    this.io.emit('game-ended', { finalLeaderboard });
+    // Build answer key for results display
+    const answerKey = QUESTIONS.map(q => ({
+      id: q.id,
+      question: q.question,
+      options: q.options,
+      correctAnswer: q.correctAnswer
+    }));
+
+    this.io.emit('game-ended', { finalLeaderboard, answerKey });
   }
 
   resetGame() {

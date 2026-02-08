@@ -1,6 +1,7 @@
 import CharacterAvatar from '../CharacterAvatar';
+import AnswerKeyModal from '../AnswerKeyModal';
 
-function AdminLeaderboard({ leaderboard, onResetGame, loading }) {
+function AdminLeaderboard({ leaderboard, answerKey, onResetGame, loading }) {
   const top3 = leaderboard.slice(0, 3);
 
   return (
@@ -61,12 +62,13 @@ function AdminLeaderboard({ leaderboard, onResetGame, loading }) {
           )}
         </div>
 
-        {/* Reset Button */}
-        <div className="text-center mb-8">
+        {/* Action Buttons */}
+        <div className="flex items-center justify-center gap-4 mb-8 flex-wrap">
+          <AnswerKeyModal answerKey={answerKey} />
           <button
             onClick={onResetGame}
             disabled={loading}
-            className={`px-12 py-5 rounded-xl text-2xl font-bold transition-all ${
+            className={`px-8 py-4 rounded-xl text-lg font-bold transition-all ${
               !loading
                 ? 'bg-coral text-white hover:bg-red-500 hover:scale-105 cursor-pointer'
                 : 'bg-gray-500 text-gray-300 cursor-not-allowed'
