@@ -244,8 +244,7 @@ export class GameManager {
           player.score += 5;
         }
       } else {
-        // Wrong answer: -5 points
-        player.score -= 5;
+        // Wrong answer: 0 points (no penalty)
       }
     });
 
