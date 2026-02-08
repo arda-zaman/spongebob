@@ -106,6 +106,7 @@ function AdminView({ socket }) {
   };
 
   const playerCount = lobbyData.players.filter(p => !p.isAdmin && p.character).length;
+  const canStart = playerCount >= 2;
 
   return (
     <div className="relative z-10">
@@ -114,6 +115,41 @@ function AdminView({ socket }) {
           {error}
         </div>
       )}
+
+      {/* Persistent Admin Control Bar */}
+      <div className="sticky top-0 z-40 bg-ocean-dark/90 backdrop-blur-sm border-b-2 border-sponge-yellow/30 px-4 py-3">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-sponge-yellow font-bold text-sm uppercase tracking-wider">
+              {gameState === 'LOBBY' ? '⏳ Lobby' : gameState === 'PLAYING' ? '🎮 In Game' : '🏆 Finished'}
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleStartGame}
+              disabled={!canStart || loading}
+              className={`px-6 py-2 rounded-lg font-bold text-sm transition-all ${
+                canStart && !loading
+                  ? 'bg-green-500 text-white hover:bg-green-600 hover:scale-105 cursor-pointer'
+                  : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+              }`}
+            >
+              {loading ? '⏳ Starting...' : '🚀 Start Game'}
+            </button>
+            <button
+              onClick={handleResetGame}
+              disabled={loading}
+              className={`px-6 py-2 rounded-lg font-bold text-sm transition-all ${
+                !loading
+                  ? 'bg-coral text-white hover:bg-red-500 hover:scale-105 cursor-pointer'
+                  : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+              }`}
+            >
+              {loading ? '⏳ Resetting...' : '🔄 Reset Game'}
+            </button>
+          </div>
+        </div>
+      </div>
 
       {gameState === 'LOBBY' && (
         <AdminLobby

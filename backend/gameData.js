@@ -32,7 +32,7 @@ export const QUESTIONS = [
       "I'll fix it right away"
     ],
     correctAnswer: 0,
-    timeLimit: 15
+    timeLimit: 12
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ export const QUESTIONS = [
       'A zero-day exploit'
     ],
     correctAnswer: 1,
-    timeLimit: 14
+    timeLimit: 11
   },
   {
     id: 3,
@@ -56,7 +56,7 @@ export const QUESTIONS = [
       'npm audit finding 847 vulnerabilities'
     ],
     correctAnswer: 1,
-    timeLimit: 13
+    timeLimit: 10
   },
   {
     id: 4,
@@ -68,7 +68,7 @@ export const QUESTIONS = [
       'They file a bug report on the DJ'
     ],
     correctAnswer: 0,
-    timeLimit: 12
+    timeLimit: 9
   },
   {
     id: 5,
@@ -80,7 +80,7 @@ export const QUESTIONS = [
       'You can negotiate'
     ],
     correctAnswer: 1,
-    timeLimit: 11
+    timeLimit: 8
   },
   {
     id: 6,
@@ -92,7 +92,7 @@ export const QUESTIONS = [
       'They go outside for the first time in weeks'
     ],
     correctAnswer: 1,
-    timeLimit: 10
+    timeLimit: 7
   },
   {
     id: 7,
@@ -104,7 +104,7 @@ export const QUESTIONS = [
       'The EM doesn\'t notice'
     ],
     correctAnswer: 1,
-    timeLimit: 10
+    timeLimit: 7
   },
   {
     id: 8,
@@ -116,7 +116,7 @@ export const QUESTIONS = [
       'Alt+F4 (close the bug report)'
     ],
     correctAnswer: 0,
-    timeLimit: 10
+    timeLimit: 7
   },
   {
     id: 9,
@@ -128,7 +128,7 @@ export const QUESTIONS = [
       '"CSS doesn\'t work that way"'
     ],
     correctAnswer: 0,
-    timeLimit: 10
+    timeLimit: 7
   },
   {
     id: 10,
@@ -140,6 +140,6 @@ export const QUESTIONS = [
       'Teleportation'
     ],
     correctAnswer: 2,
-    timeLimit: 10
+    timeLimit: 7
   },
 ];
