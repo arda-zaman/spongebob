@@ -115,8 +115,8 @@ function PlayerGame({ currentQuestion, questionResults, playerData, onAnswerSubm
               disabled={answered || !!questionResults}
               className={getAnswerClass(index)}
             >
-              <span className="mr-3 text-2xl">
-                {['🅰️', '🅱️', '©️', '🅳'][index]}
+              <span className="mr-3 inline-flex items-center justify-center w-8 h-8 rounded bg-red-600 text-white font-bold text-lg leading-none">
+                {['A', 'B', 'C', 'D'][index]}
               </span>
               {option}
             </button>

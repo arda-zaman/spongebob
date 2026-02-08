@@ -105,8 +105,11 @@ function AdminGame({ currentQuestion, questionResults, playerAnswers, lobbyData 
                     }`}
                   >
                     <div className="flex justify-between items-center">
-                      <span>
-                        {['🅰️', '🅱️', '©️', '🅳'][index]} {option}
+                      <span className="flex items-center gap-2">
+                        <span className="inline-flex items-center justify-center w-7 h-7 rounded bg-red-600 text-white font-bold text-sm leading-none flex-shrink-0">
+                          {['A', 'B', 'C', 'D'][index]}
+                        </span>
+                        {option}
                       </span>
                       <span className="bg-ocean-dark/50 px-2 py-1 rounded text-sm">
                         {answerCount}
@@ -131,8 +134,8 @@ function AdminGame({ currentQuestion, questionResults, playerAnswers, lobbyData 
                     >
                       <CharacterAvatar character={answer.character} size="sm" />
                       <span className="text-white flex-1">{answer.playerName}</span>
-                      <span className="text-sponge-yellow">
-                        {['🅰️', '🅱️', '©️', '🅳'][answer.answerIndex]}
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded bg-red-600 text-white font-bold text-xs leading-none flex-shrink-0">
+                        {['A', 'B', 'C', 'D'][answer.answerIndex]}
                       </span>
                       <span className="text-white/60 text-sm">
                         {(answer.answerTime / 1000).toFixed(1)}s
