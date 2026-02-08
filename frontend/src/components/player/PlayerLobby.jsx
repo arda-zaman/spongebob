@@ -22,8 +22,9 @@ function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="bg-ocean-dark/80 backdrop-blur-sm rounded-3xl p-8 max-w-2xl w-full text-center shadow-2xl border-4 border-sponge-yellow">
+          <img src="/argos-logo.png" alt="Argos" className="h-12 mx-auto mb-4" />
           <h1 className="text-4xl text-sponge-yellow mb-6 drop-shadow-lg">
-            🍍 Welcome, {playerData.name}!
+            🛒 Welcome, {playerData.name}!
           </h1>
           
           <div className="bg-ocean-blue/50 rounded-2xl p-6 mb-6">
@@ -67,9 +68,13 @@ function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
+          <img src="/argos-logo.png" alt="Argos" className="h-16 mx-auto mb-4" />
           <h1 className="text-5xl md:text-6xl text-sponge-yellow drop-shadow-lg mb-2">
-            🍍 SpongeBob Trivia
+            Chui Trivia
           </h1>
+          <p className="text-lg text-white/60 italic mb-3">
+            "Where every bug is a feature and every PR takes 3 sprints to merge"
+          </p>
           <p className="text-xl text-white/80">
             Choose your character and get ready!
           </p>

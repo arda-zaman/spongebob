@@ -9,11 +9,12 @@ function AdminLobby({ lobbyData, playerCount, onStartGame, loading }) {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
+          <img src="/argos-logo.png" alt="Argos" className="h-16 mx-auto mb-4" />
           <h1 className="text-5xl md:text-6xl text-sponge-yellow drop-shadow-lg mb-2">
-            🎮 Admin Control Panel
+            Admin Control Panel
           </h1>
           <p className="text-xl text-white/80">
-            SpongeBob Trivia Game
+            Chui Trivia - Argos Checkout UI
           </p>
         </div>
 
