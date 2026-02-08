@@ -3,6 +3,8 @@ import AdminLobby from './admin/AdminLobby';
 import AdminGame from './admin/AdminGame';
 import AdminLeaderboard from './admin/AdminLeaderboard';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
 function AdminView({ socket }) {
   const [gameState, setGameState] = useState('LOBBY');
   const [lobbyData, setLobbyData] = useState({
@@ -75,7 +77,7 @@ function AdminView({ socket }) {
   const handleStartGame = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/start-game', {
+      const response = await fetch(`${API_URL}/api/start-game`, {
         method: 'POST'
       });
       const data = await response.json();
@@ -93,7 +95,7 @@ function AdminView({ socket }) {
   const handleResetGame = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3001/api/reset-game', {
+      const response = await fetch(`${API_URL}/api/reset-game`, {
         method: 'POST'
       });
       const data = await response.json();

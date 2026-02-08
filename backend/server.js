@@ -8,7 +8,7 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: '*',
     methods: ['GET', 'POST']
   }
 });
@@ -59,7 +59,6 @@ io.on('connection', (socket) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
-  console.log(`🍍 SpongeBob Trivia Server running on port ${PORT}`);
+server.listen(3001, () => {
+  console.log('🍍 SpongeBob Trivia Server running on port 3001');
 });

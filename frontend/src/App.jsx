@@ -4,7 +4,8 @@ import PlayerView from './components/PlayerView';
 import AdminView from './components/AdminView';
 import Bubbles from './components/Bubbles';
 
-const socket = io('http://localhost:3001');
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+const socket = io(API_URL);
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
