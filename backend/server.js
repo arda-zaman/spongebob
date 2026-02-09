@@ -45,6 +45,9 @@ app.get('/api/status', (req, res) => {
 io.on('connection', (socket) => {
   console.log(`Client connected: ${socket.id}`);
 
+  // Send current lobby data to the newly connected client
+  socket.emit('lobby-updated', gameManager.getLobbyData());
+
   socket.on('join-game', (data) => {
     gameManager.handleJoinGame(socket, data);
   });
