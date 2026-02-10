@@ -2,9 +2,8 @@ import { useState } from 'react';
 import CharacterGrid from '../CharacterGrid';
 import CharacterAvatar from '../CharacterAvatar';
 
-function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
+function PlayerLobby({ lobbyData, playerData, selectedCharacter, onCharacterSelect, onJoinGame }) {
   const [name, setName] = useState('');
-  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   const handleConfirm = () => {
     if (name.trim() && selectedCharacter) {
@@ -14,7 +13,7 @@ function PlayerLobby({ lobbyData, playerData, onJoinGame }) {
 
   const handleCharacterSelect = (character) => {
     if (!lobbyData.takenCharacters[character]) {
-      setSelectedCharacter(character);
+      onCharacterSelect(character);
     }
   };
 

@@ -20,11 +20,19 @@ function PlayerView({ socket }) {
     score: 0,
     joined: false
   });
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     socket.on('lobby-updated', (data) => {
       setLobbyData(data);
+      // Deselect if another player confirmed the same character
+      setSelectedCharacter(prev => {
+        if (prev && data.takenCharacters[prev]) {
+          return null;
+        }
+        return prev;
+      });
     });
 
     socket.on('character-taken', (data) => {
@@ -63,6 +71,7 @@ function PlayerView({ socket }) {
       setQuestionResults(null);
       setFinalLeaderboard([]);
       setAnswerKey([]);
+      setSelectedCharacter(null);
       setPlayerData(prev => ({
         ...prev,
         character: null,
@@ -115,6 +124,8 @@ function PlayerView({ socket }) {
         <PlayerLobby
           lobbyData={lobbyData}
           playerData={playerData}
+          selectedCharacter={selectedCharacter}
+          onCharacterSelect={setSelectedCharacter}
           onJoinGame={handleJoinGame}
         />
       )}
