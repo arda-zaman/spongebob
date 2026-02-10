@@ -26,6 +26,12 @@ function PlayerView({ socket }) {
   useEffect(() => {
     socket.on('lobby-updated', (data) => {
       setLobbyData(data);
+      // Confirm join only when backend shows this player in the lobby
+      const me = data.players.find(p => p.socketId === socket.id && !p.isAdmin && p.character);
+      if (me) {
+        setPlayerData(prev => ({ ...prev, name: me.name, character: me.character, joined: true }));
+        setSelectedCharacter(null);
+      }
       // Deselect if another player confirmed the same character
       setSelectedCharacter(prev => {
         if (prev && data.takenCharacters[prev]) {
@@ -36,7 +42,8 @@ function PlayerView({ socket }) {
     });
 
     socket.on('character-taken', (data) => {
-      setError(`${data.character} is already taken by ${data.takenBy}`);
+      setError(`${data.character} is already taken by ${data.takenBy}!`);
+      setSelectedCharacter(null);
       setTimeout(() => setError(null), 3000);
     });
 
@@ -99,7 +106,6 @@ function PlayerView({ socket }) {
 
   const handleJoinGame = (name, character) => {
     socket.emit('join-game', { name, character, isAdmin: false });
-    setPlayerData(prev => ({ ...prev, name, character, joined: true }));
   };
 
   const handleAnswerSubmit = (answerIndex) => {
